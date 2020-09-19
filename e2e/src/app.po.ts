@@ -1,3 +1,11 @@
+/**
+ * Title: app.po.ts
+ * Author: Jeff Shepherd
+ * Modified by:
+ * Date: 9/18/2020
+ * Description:
+ **/
+
 import { browser, by, element } from 'protractor';
 
 export class AppPage {

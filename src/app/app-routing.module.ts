@@ -1,3 +1,11 @@
+/**
+ * Title: app.routing.module.ts
+ * Author: Jeff Shepherd
+ * Modified by:
+ * Date: 9/18/2020
+ * Description: routing module
+ **/
+
 import { HomeComponent } from './pages/home/home.component';
 import { BaseLayoutComponent } from './shared/base-layout/base-layout.component';
 import { NgModule } from '@angular/core';
