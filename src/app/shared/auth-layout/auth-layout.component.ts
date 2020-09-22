@@ -1,10 +1,12 @@
-/**
+/*
+ *==============================================================================
  * Title: auth-layout.component.ts
  * Author: Jeff Shepherd
  * Modified by:
  * Date: 9/18/2020
  * Description: auth-layout component
- **/
+ *==============================================================================
+ */
 
 import { Component, OnInit } from '@angular/core';
 

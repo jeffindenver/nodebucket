@@ -1,10 +1,12 @@
-/**
- * Title: main.ts
+/*
+ *==============================================================================
+ *  Title: main.ts
  * Author: Jeff Shepherd
  * Modified by:
  * Date: 9/18/2020
  * Description: main driver
- **/
+ *==============================================================================
+ */
 
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';

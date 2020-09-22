@@ -1,10 +1,12 @@
-/**
+/*
+ *==============================================================================
  * Title: base-layout.component.ts
  * Author: Jeff Shepherd
  * Modified by:
  * Date: 9/18/2020
  * Description: base-layout.component.ts
- **/
+ *==============================================================================
+ */
 
 import { Component, OnInit } from '@angular/core';
 

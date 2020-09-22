@@ -1,10 +1,12 @@
-/**
+/*
+ *==============================================================================
  * Title: app.module.ts
  * Author: Jeff Shepherd
  * Modified by:
  * Date: 9/18/2020
  * Description: app module
- **/
+ *==============================================================================
+ */
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
