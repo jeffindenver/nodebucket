@@ -1,11 +1,12 @@
-/**
+/******************************************************************************
  * Title: main.ts
  * Author: Professor Krasso
  * Modified by: Jeff Shepherd
  * Date: 9/18/2020
  * Description: server app
- **/
+ *****************************************************************************/
 
+"use strict";
 
 /******************************************************************************
  * Require statements
@@ -16,6 +17,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require('mongoose');
+const Employee = require('./models/employee');
 
 /******************************************************************************
  * App configurations
@@ -41,7 +43,8 @@ const conn = 'mongodb+srv://nodebucket_user:dGSE855gCytKQGsD@buwebdev-cluster-1.
 mongoose.connect(conn, {
   promiseLibrary: require('bluebird'),
   useUnifiedTopology: true,
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useCreateIndex: true
 }).then(() => {
   console.debug(`Connection to the database instance was successful`);
 }).catch(err => {
@@ -49,12 +52,44 @@ mongoose.connect(conn, {
 });
 
 /******************************************************************************
- * API(s) go here...
+ * APIs
  *****************************************************************************/
+
+app.get('/api/employee/:id', async(req, res) => {
+  try {
+    let id = req.params.id;
+    Employee.findOne({
+      "id": id
+    }, function (err, employee) {
+
+      // catch database errors
+      if(err) {
+        console.log(err);
+        res.status(500).send({
+          'message': 'Internal server error'
+        })
+
+      // respond with employee object
+      }
+      else {
+        console.log(employee);
+        res.json(employee);
+      }
+    })
+
+    // catch any other errors
+  } catch(e) {
+    console.log(e);
+    res.status(500).send({
+      'message': 'Internal server error'
+    })
+  }
+})
+
 
 /******************************************************************************
  * Create and start server
  *****************************************************************************/
-http.createServer(app).listen(port, function() {
+http.createServer(app).listen(port, function () {
   console.log(`Application started and listening on port: ${port}`)
 });

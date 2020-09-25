@@ -1,12 +1,10 @@
-/*
- * =============================================================================
+/******************************************************************************
  * Title: app.component.ts
  * Author: Jeff Shepherd
  * Modified by:
  * Date: 9/18/2020
  * Description: app component
- * =============================================================================
- */
+ *****************************************************************************/
 
 import { Component } from '@angular/core';
 
@@ -15,6 +13,4 @@ import { Component } from '@angular/core';
   template: `<router-outlet></router-outlet>`,
   styles: [``]
 })
-export class AppComponent {
-
-}
+export class AppComponent { }

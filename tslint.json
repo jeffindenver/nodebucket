@@ -66,6 +66,7 @@
     ],
     "quotemark": [
       true,
+      "avoid-escape",
       "single"
     ],
     "semicolon": {
