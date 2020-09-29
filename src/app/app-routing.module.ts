@@ -25,10 +25,6 @@ const routes: Routes = [
     path: 'session',
     component: AuthLayoutComponent,
     children: [ {path: 'signin', component: SigninComponent}]
-  },
-  {
-    path: 'signin',
-    component: SigninComponent
   }
 ];
 
