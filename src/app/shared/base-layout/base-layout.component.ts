@@ -26,7 +26,7 @@ export class BaseLayoutComponent implements OnInit {
    ***************************************************************************/
   ngOnInit(): void {
     console.log("base layout init");
-    this.cookieService.delete('session_user');
+    //this.cookieService.delete('session_user');
     console.log("Cookie deleted");
   }
 

@@ -1,5 +1,5 @@
 /******************************************************************************
- * Title: main.ts
+ * Title: app.js
  * Author: Professor Krasso
  * Modified by: Jeff Shepherd
  * Date: 9/18/2020
@@ -17,7 +17,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require('mongoose');
-const Employee = require('./models/employee');
+const EmployeeApi = require('./routes/employee-api');
 
 /******************************************************************************
  * App configurations
@@ -54,37 +54,7 @@ mongoose.connect(conn, {
 /******************************************************************************
  * APIs
  *****************************************************************************/
-
-app.get('/api/employee/:id', async(req, res) => {
-  try {
-    let id = req.params.id;
-    Employee.findOne({
-      "id": id
-    }, function (err, employee) {
-
-      // catch database errors
-      if(err) {
-        console.log(err);
-        res.status(500).send({
-          'message': 'Internal server error'
-        })
-
-      // respond with employee object
-      }
-      else {
-        console.log(employee);
-        res.json(employee);
-      }
-    })
-
-    // catch any other errors
-  } catch(e) {
-    console.log(e);
-    res.status(500).send({
-      'message': 'Internal server error'
-    })
-  }
-})
+app.use('/api/employee', EmployeeApi);
 
 
 /******************************************************************************
