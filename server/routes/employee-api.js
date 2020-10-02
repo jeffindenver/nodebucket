@@ -19,38 +19,10 @@ const ErrorResponse = require('../services/error-response');
 let router = express.Router();
 
 /******************************************************************************
- *  FindOne
- *****************************************************************************/
-let findOne = function (req, res, next) {
-
-  try {
-    Employee.findOne({
-      "id": req.params.id
-    }, res.locals.selection, function (error, employee) {
-
-      if (error) {
-        console.log(error);
-        res.locals.errorResponse = new ErrorResponse(error);
-      } else {
-        console.log(employee);
-        res.locals.successResponse = new BaseResponse(employee);
-        console.log("successResponse set");
-        console.log(res.locals.successResponse.toObject());
-      }
-    });
-    // catch any other errors
-  } catch (e) {
-    console.log(e);
-    const catchErrorResponse = new ErrorResponse(e.message);
-    res.status(500).send(catchErrorResponse.toObject());
-  }
-
-}
-
-/******************************************************************************
  * Find employee by ID API
  *****************************************************************************/
 router.get('/:id', async (req, res) => {
+
 
   try {
     Employee.findOne({
@@ -67,7 +39,7 @@ router.get('/:id', async (req, res) => {
         res.json(successResponse.toObject());
       }
     });
-    // catch any other errors
+    // catch errors
   } catch (e) {
     console.log(e);
     const catchErrorResponse = new ErrorResponse(e.message);
@@ -95,7 +67,7 @@ router.get('/:id/tasks', async (req, res) => {
         res.json(successResponse.toObject());
       }
     });
-    // catch any other errors
+    // catch errors
   } catch (e) {
     console.log(e);
     const catchErrorResponse = new ErrorResponse(e.message);
@@ -178,7 +150,7 @@ router.put('/:id/tasks', async (req, res) => {
         })
       }
     });
-    // catch any other errors
+    // catch errors
   } catch (e) {
     console.log(e);
     const catchErrorResponse = new ErrorResponse(e.message);
