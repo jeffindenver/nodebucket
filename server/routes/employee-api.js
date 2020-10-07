@@ -19,61 +19,71 @@ const ErrorResponse = require('../services/error-response');
 let router = express.Router();
 
 /******************************************************************************
- * Find employee by ID API
+ * FindOne function awaits results from the Mongo model.findOne function.
+ * The results are attached to the response object, which is magically
+ * passed to the next function in the callback chain.
  *****************************************************************************/
-router.get('/:id', async (req, res) => {
-
-
+let findOne = async (req, res) => {
   try {
-    Employee.findOne({
-      "id": req.params.id
-    }, function (error, employee) {
+    await Employee.findOne({
+      'id': req.params.id
+    }, res.locals.selection, function (error, employee) {
 
       if (error) {
+        res.locals.result = {
+          error: error
+        };
         console.log(error);
-        const errorResponse = new ErrorResponse(error);
-        res.status(500).send(errorResponse.toObject());
       } else {
         console.log(employee);
-        const successResponse = new BaseResponse(employee);
-        res.json(successResponse.toObject());
+        res.locals.result = {
+          success: employee
+        };
       }
     });
-    // catch errors
   } catch (e) {
     console.log(e);
-    const catchErrorResponse = new ErrorResponse(e.message);
-    res.status(500).send(catchErrorResponse.toObject());
+    res.status(500).send(new ErrorResponse(e.message).toObject());
   }
-})
+}
 
 /******************************************************************************
- * Find all tasks by ID API
+ * Refactored Find employee by ID API
  *****************************************************************************/
-router.get('/:id/tasks', async (req, res) => {
+router.get('/:id', async (req, res, next) => {
+    res.locals.selection = '';
+    await findOne(req, res, next);
+    next();
+  },
+  // TODO: extract the following anonymous function to "sendResult()" and share
+  function (req, res) {
 
-  try {
-    Employee.findOne({
-      "id": req.params.id
-    }, 'id todo done', function (error, employee) {
+    if (res.locals.result.error) {
+      const errorResponse = new ErrorResponse(res.locals.result.error);
+      res.status(500).send(errorResponse.toObject());
+    } else if (res.locals.result.success) {
+      const successResponse = new BaseResponse(res.locals.result.success);
+      res.json(successResponse.toObject());
+    }
+  })
 
-      if (error) {
-        console.log(error);
-        const errorResponse = new ErrorResponse(error);
-        res.status(500).send(errorResponse.toObject());
-      } else {
-        console.log(employee);
-        const successResponse = new BaseResponse(employee);
-        res.json(successResponse.toObject());
-      }
-    });
-    // catch errors
-  } catch (e) {
-    console.log(e);
-    const catchErrorResponse = new ErrorResponse(e.message);
-    res.status(500).send(catchErrorResponse.toObject());
-  }
-})
+/******************************************************************************
+ * Refactored Find all tasks by ID API
+ *****************************************************************************/
+router.get('/:id/tasks', async (req, res, next) => {
+    res.locals.selection = 'id todo done';
+    await findOne(req, res, next);
+    next();
+  },
+  function (req, res) {
+    if (res.locals.result.error) {
+      const errorResponse = new ErrorResponse(res.locals.result.error);
+      res.status(500).send(errorResponse.toObject());
+    } else if (res.locals.result.success) {
+      const successResponse = new BaseResponse(res.locals.result.success);
+      res.json(successResponse.toObject());
+    }
+  })
 
 /******************************************************************************
  * Create task by ID API
@@ -117,7 +127,9 @@ router.post('/:id/tasks', async (req, res) => {
 })
 
 /******************************************************************************
- * Update task by ID API
+ * Update task by ID API. This function replaces the contents of the todo and
+ * done arrays entirely. Any items that should be retained must included in
+ * the request body.
  *****************************************************************************/
 router.put('/:id/tasks', async (req, res) => {
 
@@ -159,7 +171,9 @@ router.put('/:id/tasks', async (req, res) => {
 })
 
 /******************************************************************************
- * Delete task by ID API
+ * Delete task by ID API. This function searches both the todo and done arrays
+ * for the matching, unique id and then removes. Future versions may be able
+ * to eliminate the need to check both arrays by checking the source element.
  *****************************************************************************/
 router.delete('/:id/tasks/:taskId', async (req, res) => {
 
