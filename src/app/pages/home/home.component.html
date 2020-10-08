@@ -1,3 +1,31 @@
 <div fxLayout="column" class="main-welcome">
     <div fxFlex style="background-color:white;"><img class="center logo" src="../../../assets/images/nodebucket-logo-4.gif" alt=""></div>
+    <div fxFlex fxLayout="row">
+      <div fxFlex>
+        <h2>ToDo</h2>
+        <table>
+          <tr>
+            <th>Task</th>
+          </tr>
+          <ng-container *ngFor="let item of todo; let i = index">
+            <tr>
+              <td>{{ item.text }}</td>
+            </tr>
+          </ng-container>
+        </table>
+      </div>
+      <div fxFlex>
+        <h2>Done</h2>
+        <table>
+          <tr>
+            <th>Task</th>
+          </tr>
+          <ng-container *ngFor="let item of todo; let i = index">
+            <tr>
+              <td>{{ item.text }}</td>
+            </tr>
+          </ng-container>
+        </table>
+      </div>
+    </div>
   </div>

@@ -13,6 +13,7 @@ import {BaseLayoutComponent} from './shared/base-layout/base-layout.component';
 import {HomeComponent} from './pages/home/home.component';
 import {Routes, RouterModule} from '@angular/router';
 import {SigninComponent} from './pages/signin/signin.component';
+import {NotFoundComponent} from './pages/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -24,7 +25,10 @@ const routes: Routes = [
   {
     path: 'session',
     component: AuthLayoutComponent,
-    children: [ {path: 'signin', component: SigninComponent}]
+    children: [
+      {path: 'signin', component: SigninComponent},
+      {path: 'not-found', component: NotFoundComponent}
+    ]
   }
 ];
 

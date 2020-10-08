@@ -18,7 +18,7 @@ export class AuthLayoutComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log("auth-layout init");
+    console.log('auth-layout init');
   }
 
 }

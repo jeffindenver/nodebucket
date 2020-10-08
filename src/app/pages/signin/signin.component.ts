@@ -31,7 +31,7 @@ export class SigninComponent implements OnInit {
    * Here, the signinForm is created using FormBuilder with a single control
    ***************************************************************************/
   ngOnInit(): void {
-    console.log("signin init");
+    console.log('signin init');
     this.signinForm = this.fb.group({
       idControl: [null, Validators.compose([Validators.required,
         Validators.pattern('^[0-9]*$')])]
