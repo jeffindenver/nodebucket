@@ -1,1 +1,17 @@
-<p>create-task-dialog works!</p>
+<h2 mat-dialog-title>Add new task</h2>
+
+<mat-dialog-content>
+  <mat-form-field>
+    <input
+      style="width: 200px"
+      placeholder="Enter a task..."
+      mat Input
+      formControlName="text"
+      (keydown.enter)="createTask()">
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-action align="end">
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-button [disabled]="!taskForm.valid" (click)="createTask()">Create task</button>
+</mat-dialog-action>
