@@ -14,13 +14,23 @@ import {HomeComponent} from './pages/home/home.component';
 import {Routes, RouterModule} from '@angular/router';
 import {SigninComponent} from './pages/signin/signin.component';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
+import {AboutComponent} from './pages/about/about.component';
 
 const routes: Routes = [
   {
     path: '',
     component: BaseLayoutComponent,
-    children: [ {path: '', component: HomeComponent}],
-    canActivate: [AuthGuard]
+    children: [
+      {
+        path: '',
+        component: HomeComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'about',
+        component: AboutComponent
+      }
+    ]
   },
   {
     path: 'session',
@@ -29,6 +39,10 @@ const routes: Routes = [
       {path: 'signin', component: SigninComponent},
       {path: 'not-found', component: NotFoundComponent}
     ]
+  },
+  {
+    path: '**',
+    redirectTo: 'session/not-found'
   }
 ];
 
