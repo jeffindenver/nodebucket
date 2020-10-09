@@ -14,6 +14,7 @@ import {Employee} from '../../shared/employee.interface';
 import {CookieService} from 'ngx-cookie-service';
 import {CreateTaskDialogComponent} from 'src/app/shared/create-task-dialog/create-task-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
+import { $ } from 'protractor';
 
 @Component({
   selector: 'app-home',
@@ -71,6 +72,8 @@ export class HomeComponent implements OnInit {
   private updateTaskList(id: string, todo: Item[], done: Item[]): void {
     this.taskService.updateTask(id, todo, done).subscribe(res => {
         this.employee = res.data;
+        console.log('update task in home component');
+        console.log(this.employee);
       },
       (err) => {
         console.log(err);
@@ -85,6 +88,7 @@ export class HomeComponent implements OnInit {
     const dialogRef = this.dialog.open(CreateTaskDialogComponent, {
       disableClose: true
     });
+
     dialogRef.afterClosed().subscribe(data => {
       console.log('in open create Task dialog');
       console.log(data);
@@ -99,6 +103,19 @@ export class HomeComponent implements OnInit {
             this.done = this.employee.done;
           });
       }
+    });
+  }
+
+  deleteTask(taskId: string) {
+    console.log(`Task item: ${taskId} was deleted`);
+
+    this.taskService.deleteTask(this.id, taskId).subscribe(res => {
+      this.employee = res.data;
+    }, err => {
+      console.log(err);
+    }, () => {
+      this.todo = this.employee.todo;
+      this.done = this.employee.done;
     });
   }
 
