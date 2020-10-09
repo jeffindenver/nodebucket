@@ -6,10 +6,10 @@
  * Description: employee interface
  *****************************************************************************/
 
- import {Item} from './item.interface';
+import {Item} from './item.interface';
 
- export interface Employee {
-   id: string;
-   todo: Item[];
-   done: Item[];
- }
+export interface Employee {
+  id: string;
+  todo: Item[];
+  done: Item[];
+}

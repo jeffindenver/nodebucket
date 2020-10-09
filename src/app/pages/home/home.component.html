@@ -57,14 +57,11 @@
                         </div>
 
                         <div fxFlex fxLayoutAlign="end">
-                          <button
-                            [matTriggerFor]="todoOptions"
-                            class="task-options-menu"
-                            mat-icon-button>
+                          <button [matTriggerFor]="todoOptions" class="task-options-menu" mat-icon-button>
                             <mat-icon>more_horiz</mat-icon>
                           </button>
 
-                          <mat-menu #todoOption="matMenu" x-position="before">
+                          <mat-menu #todoOptions="matMenu" x-position="before">
                             <button (click)="deleteTask(item._id)" mat-menu-item>
                               Remove
                             </button>
@@ -100,7 +97,7 @@
                 cdkDropList
                 #doneList="cdkDropList"
                 [cdkDropListData]="done"
-                [cdkDropListConnectTo]="[todoList]"
+                [cdkDropListConnectedTo]="[todoList]"
                 (cdkDropListDropped)="drop($event)">
 
               </div>
@@ -116,32 +113,4 @@
 
     </div>
 
-    <div fxFlex>
-      <div fxFlex>
-        <h2>ToDo</h2>
-        <table>
-          <tr>
-            <th>Task</th>
-          </tr>
-          <ng-container *ngFor="let item of todo; let i = index">
-            <tr>
-              <td>{{ item.text }}</td>
-            </tr>
-          </ng-container>
-        </table>
-      </div>
-      <div fxFlex>
-        <h2>Done</h2>
-        <table>
-          <tr>
-            <th>Task</th>
-          </tr>
-          <ng-container *ngFor="let item of todo; let i = index">
-            <tr>
-              <td>{{ item.text }}</td>
-            </tr>
-          </ng-container>
-        </table>
-      </div>
-    </div>
   </div>

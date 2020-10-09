@@ -23,7 +23,8 @@ export class SigninComponent implements OnInit {
   error: string;
 
   constructor(private router: Router, private cookieService: CookieService,
-              private fb: FormBuilder, private http: HttpClient) { }
+              private fb: FormBuilder, private http: HttpClient) {
+  }
 
   /****************************************************************************
    * Angular uses ngOnInit to keep business logic out of the constructor
@@ -45,7 +46,7 @@ export class SigninComponent implements OnInit {
    ***************************************************************************/
   login(): void {
     const id = this.signinForm.controls.idControl.value;
-    console.log("idControl's value is " + id);
+    console.log('idControl\'s value is ' + id);
 
     this.http.get('/api/employee/' + id).subscribe(res => {
       if (res) {

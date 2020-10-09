@@ -11,7 +11,7 @@ import {AuthGuard} from './auth.guard';
 import {AuthLayoutComponent} from './shared/auth-layout/auth-layout.component';
 import {BaseLayoutComponent} from './shared/base-layout/base-layout.component';
 import {HomeComponent} from './pages/home/home.component';
-import {Routes, RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {SigninComponent} from './pages/signin/signin.component';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {AboutComponent} from './pages/about/about.component';
@@ -51,4 +51,5 @@ const routes: Routes = [
     {useHash: true, enableTracing: false, scrollPositionRestoration: 'enabled'})],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

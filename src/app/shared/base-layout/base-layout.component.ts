@@ -6,7 +6,7 @@
  * Description: base layout component
  *****************************************************************************/
 
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CookieService} from 'ngx-cookie-service';
 
 @Component({
@@ -18,7 +18,8 @@ export class BaseLayoutComponent implements OnInit {
 
   year: number = Date.now();
 
-  constructor(private cookieService: CookieService) { }
+  constructor(private cookieService: CookieService) {
+  }
 
   /****************************************************************************
    * The session_user cookie is deleted so that the signin form
@@ -26,7 +27,7 @@ export class BaseLayoutComponent implements OnInit {
    ***************************************************************************/
   ngOnInit(): void {
     console.log('base layout init');
-    // this.cookieService.delete('session_user');
+    this.cookieService.delete('session_user');
     console.log('Cookie deleted');
   }
 

@@ -13,8 +13,8 @@ class ErrorResponse {
     this.data = data;
   }
 
-    // sets the values of members defaults and constructor args.
-    // the defaults can be overridden
+  // sets the values of members defaults and constructor args.
+  // the defaults can be overridden
   toObject() {
     return {
       'httpcode': this.httpCode,

@@ -1,36 +1,37 @@
 <div fxLayout="column">
 
-    <!-- navigation -->
-    <nav fxFlex>
-      <mat-toolbar class="light-brown">
-        <!-- navbar container -->
-        <div class="navbar-container center" fxLayout="row">
-          <!-- logo -->
-          <button fxFlex class="navbar-link" routerLink="/" mat-button>nodebucket</button>
+  <!-- navigation -->
+  <nav fxFlex>
+    <mat-toolbar class="light-brown">
+      <!-- navbar container -->
+      <div class="navbar-container center" fxLayout="row">
+        <!-- logo -->
+        <button fxFlex class="navbar-link" routerLink="/" mat-button>nodebucket</button>
 
-          <button fxFlex class="navbar-link" routerLink="/" mat-button>home</button>
-          <button fxFlex class="navbar-link" mat-button>about</button>
-        </div>
+        <button fxFlex class="navbar-link" routerLink="/" mat-button>home</button>
+        <button fxFlex class="navbar-link" mat-button>about</button>
+      </div>
 
-      </mat-toolbar>
-    </nav>
+    </mat-toolbar>
+  </nav>
 
-    <!-- main content -->
-    <div fxFlex>
-      <main class="main-content" fxFlex="100%;">
-        <router-outlet></router-outlet>
-      </main>
-    </div>
-
-    <!-- footer -->
-    <div fxFlex>
-      <footer class="footer">
-        <mat-toolbar class="footer-content light-brown">
-          <p>
-            &copy; {{year | date: 'yyyy'}} - nodebucket - <a href="https://www.bellevue.edu/" class="bu-link" target="_blank">Bellevue University</a>
-          </p>
-        </mat-toolbar>
-      </footer>
-    </div>
-
+  <!-- main content -->
+  <div fxFlex>
+    <main class="main-content" fxFlex="100%;">
+      <router-outlet></router-outlet>
+    </main>
   </div>
+
+  <!-- footer -->
+  <div fxFlex>
+    <footer class="footer">
+      <mat-toolbar class="footer-content light-brown">
+        <p>
+          &copy; {{year | date: 'yyyy'}} - nodebucket - <a href="https://www.bellevue.edu/" class="bu-link"
+                                                           target="_blank">Bellevue University</a>
+        </p>
+      </mat-toolbar>
+    </footer>
+  </div>
+
+</div>

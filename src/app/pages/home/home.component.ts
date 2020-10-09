@@ -6,14 +6,14 @@
  * Description: home component
  *****************************************************************************/
 
-import { Component, OnInit } from '@angular/core';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { TaskService } from '../../shared/task.service';
-import { Item } from '../../shared/item.interface';
-import { Employee } from './../../shared/employee.interface';
-import { CookieService } from 'ngx-cookie-service';
-import { CreateTaskDialogComponent } from 'src/app/shared/create-task-dialog/create-task-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
+import {Component, OnInit} from '@angular/core';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {TaskService} from '../../shared/task.service';
+import {Item} from '../../shared/item.interface';
+import {Employee} from '../../shared/employee.interface';
+import {CookieService} from 'ngx-cookie-service';
+import {CreateTaskDialogComponent} from 'src/app/shared/create-task-dialog/create-task-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-home',
@@ -53,50 +53,54 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  drop(event: CdkDragDrop<any[]>) {
+  drop(event: CdkDragDrop<any[]>): void {
 
-    if(event.previousContainer === event.container) {
+    if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
       console.log('Reordered the existing list of task items');
     } else {
       transferArrayItem(event.previousContainer.data,
-                        event.container.data,
-                        event.previousIndex,
-                        event.currentIndex);
-        console.log('Moved task item to the container')
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+      console.log('Moved task item to the container');
+      this.updateTaskList(this.id, this.todo, this.done);
     }
   }
 
   private updateTaskList(id: string, todo: Item[], done: Item[]): void {
     this.taskService.updateTask(id, todo, done).subscribe(res => {
-      this.employee = res.data;
-    },
-    this.logError,
-    this.completeTask
-    )
+        this.employee = res.data;
+      },
+      (err) => {
+        console.log(err);
+      },
+      () => {
+        this.todo = this.employee.todo;
+        this.done = this.employee.done;
+      });
   }
 
-  openCreateTaskDialog() {
+  openCreateTaskDialog(): void {
     const dialogRef = this.dialog.open(CreateTaskDialogComponent, {
       disableClose: true
-    })
+    });
     dialogRef.afterClosed().subscribe(data => {
+      console.log('in open create Task dialog');
+      console.log(data);
       if (data) {
         this.taskService.createTask(this.id, data.text).subscribe(res => {
-          this.employee = res.data;
-        }, this.logError,
-           this.completeTask)
+            this.employee = res.data;
+          }, (err) => {
+            console.log(err);
+          },
+          () => {
+            this.todo = this.employee.todo;
+            this.done = this.employee.done;
+          });
       }
-    })
+    });
   }
 
-  logError(err) {
-    console.log(err);
-  }
-  completeTask() {
-    this.todo = this.employee.todo;
-    this.done = this.employee.done;
-  }
-
-  //end
+  // end
 }
