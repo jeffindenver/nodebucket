@@ -34,19 +34,22 @@
 
   /* Task Management */
   .task-container {
-    width: 35%;
+    width: 60%;
+    min-width: 400px;
+    max-width: 800px;
     margin: 0 auto;
   }
 
   .create-task-container {
-    width: 35%;
+    width: 50%;
+    max-width: 800px;
     margin: 0 auto;
   }
 
   .task-list {
     border: 1px solid #ccc;
     min-height: 68px;
-    background: white;
+    background: rgba(0, 0, 0, 0.1);
     border-radius: 4px;
     overflow: hidden;
     display: block;
