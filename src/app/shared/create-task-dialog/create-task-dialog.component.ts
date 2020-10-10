@@ -24,15 +24,18 @@ export class CreateTaskDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.taskForm = this.fb.group({
-      // text is the single control of this form, initialized with null
-      // and optioned to require validation
+      /*
+      * text is the single control of this form, initialized with null
+      * and optioned to require validation
+      */
       text: [null, Validators.compose([Validators.required])]
     });
   }
 
   createTask(): void {
     console.log(this.taskForm.value);
-    // the argument is an optional return value
+    // the argument is an optional return value. In this case, the calling
+    // function will use the returned value as the body of the create task req
     this.dialogRef.close(this.taskForm.value);
   }
 

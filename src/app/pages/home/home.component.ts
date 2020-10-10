@@ -14,7 +14,6 @@ import {Employee} from '../../shared/employee.interface';
 import {CookieService} from 'ngx-cookie-service';
 import {CreateTaskDialogComponent} from 'src/app/shared/create-task-dialog/create-task-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
-import { $ } from 'protractor';
 
 @Component({
   selector: 'app-home',

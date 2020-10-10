@@ -7,9 +7,8 @@
       <div class="navbar-container" fxLayout="row">
         <!-- logo -->
         <button fxFlex class="navbar-link" routerLink="/" mat-button>nodebucket</button>
-
-        <button fxFlex class="navbar-link" routerLink="/" mat-button>home</button>
         <button fxFlex class="navbar-link" routerLink="/about" mat-button>about</button>
+        <button fxFlex class="navbar-link" (click)="signOut()" mat-button>sign out</button>
       </div>
 
     </mat-toolbar>

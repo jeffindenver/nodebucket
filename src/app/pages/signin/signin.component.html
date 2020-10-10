@@ -6,7 +6,7 @@
     </mat-card-title>
 
     <mat-card-subtitle>
-      You must enter a valid employee ID to proceed
+      You must enter a valid employee ID to proceed. Valid IDs are 1007-1012.
     </mat-card-subtitle>
 
     <form>
@@ -30,8 +30,8 @@
                 (click)="login()">Sign-in
         </button>
       </mat-card-actions>
-      <mat-error *ngIf="signinForm.hasError">{{error}}</mat-error>
     </form>
+    <mat-error *ngIf="signinForm.hasError">{{error}}</mat-error>
   </mat-card>
 </div>
 </body>
