@@ -49,7 +49,10 @@ export class SigninComponent implements OnInit {
     console.log('idControl\'s value is ' + id);
 
     this.http.get('/api/employee/' + id).subscribe(res => {
+      console.log("Response object:");
+      console.log(res);
       if (res) {
+        console.log(res);
         this.cookieService.set('session_user', id, 1);
         this.router.navigate(['/']);
       } else {
