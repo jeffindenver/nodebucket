@@ -1,0 +1,12 @@
+.aboutContainer {
+  padding: 20px;
+  border-radius: 10px;
+  width: 50%;
+  margin: 0 auto;
+  min-width: 400px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+}
